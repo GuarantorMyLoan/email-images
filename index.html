@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Public image hosting for email templates." />
+    <title>MTC Web Images</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --text: #162033;
+        --muted: #5f6b7e;
+        --border: #d8e0ea;
+        --accent: #0f62fe;
+        --shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(15, 98, 254, 0.08), transparent 30%),
+          linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 20px 56px;
+      }
+
+      .hero {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 28px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.05;
+      }
+
+      p {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .url-box {
+        margin-top: 18px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .url-box code,
+      .url-item code {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: #f7f9fc;
+        border: 1px solid var(--border);
+        overflow-wrap: anywhere;
+      }
+
+      .section-title {
+        margin: 26px 0 14px;
+        font-size: 1.15rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      .thumb {
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+        background: linear-gradient(180deg, #fff, #f4f7fb);
+        border-radius: 14px;
+        border: 1px solid var(--border);
+      }
+
+      .label {
+        margin: 12px 0 8px;
+        font-weight: 700;
+      }
+
+      .url-item {
+        display: grid;
+        gap: 8px;
+      }
+
+      .link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 700;
+        word-break: break-all;
+      }
+
+      .footer {
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 640px) {
+        .wrap {
+          padding: 18px 14px 40px;
+        }
+
+        .hero {
+          padding: 20px;
+        }
+
+        .thumb {
+          height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <h1>Public image hosting for email templates</h1>
+        <p class="muted">
+          This GitHub Pages site exposes stable HTTPS links for the images in <strong>email-images</strong>.
+          Use these URLs directly in email HTML so most clients can load them.
+        </p>
+
+        <div class="url-box">
+          <p><strong>Base path:</strong></p>
+          <code id="baseUrl">Loading...</code>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Available images</h2>
+        <div class="grid" id="gallery"></div>
+      </section>
+
+      <p class="footer">
+        Tip: in email templates, use absolute HTTPS image URLs and include descriptive alt text.
+      </p>
+    </main>
+
+    <script>
+      const images = [
+        'email-images/sml_logo.png',
+        'email-images/sml_487x130.png',
+        'email-images/sml_200x53.png',
+        'email-images/NFT_Logo.png',
+        'email-images/MTC_Logo.png',
+        'email-images/inbound-img.png',
+        'email-images/gml_logo.png',
+        'email-images/gml_320x58.png',
+        'email-images/gml_200x36.png',
+        'email-images/favicon.ico'
+      ];
+
+      const baseUrl = `${window.location.origin}${window.location.pathname.replace(/index\.html?$/, '')}`;
+      document.getElementById('baseUrl').textContent = baseUrl;
+
+      const gallery = document.getElementById('gallery');
+      images.forEach((path) => {
+        const url = `${baseUrl}${path}`;
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <img class="thumb" src="${url}" alt="${path}" loading="lazy" />
+          <div class="label">${path}</div>
+          <div class="url-item">
+            <a class="link" href="${url}" target="_blank" rel="noreferrer">Open image</a>
+            <code>${url}</code>
+          </div>
+        `;
+        gallery.appendChild(card);
+      });
+    </script>
+  </body>
+  </html>
