@@ -2,6 +2,14 @@
 
 This repository is set up as a GitHub Pages site for hosting email-safe image assets over public HTTPS.
 
+## Published URL
+
+Because this is a project repository, GitHub Pages serves it at:
+
+- `https://guarantormyloan.github.io/mtc-web-images.github.io/`
+
+If you try to open `https://mtc-web-images.github.io/` directly, GitHub will show a 404 unless that domain is configured as a custom domain outside this repo.
+
 ## How to use
 
 1. Push this repository to GitHub.
@@ -12,9 +20,9 @@ This repository is set up as a GitHub Pages site for hosting email-safe image as
 
 Once GitHub Pages is enabled, the images are available at URLs like:
 
-- `https://mtc-web-images.github.io/email-images/gml_logo.png`
-- `https://mtc-web-images.github.io/email-images/MTC_Logo.png`
-- `https://mtc-web-images.github.io/email-images/inbound-img.png`
+- `https://guarantormyloan.github.io/mtc-web-images.github.io/email-images/gml_logo.png`
+- `https://guarantormyloan.github.io/mtc-web-images.github.io/email-images/MTC_Logo.png`
+- `https://guarantormyloan.github.io/mtc-web-images.github.io/email-images/inbound-img.png`
 
 ## Email client note
 
